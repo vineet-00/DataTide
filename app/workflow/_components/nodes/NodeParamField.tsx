@@ -1,6 +1,6 @@
 "use client"
-import { TaskParam, TaskParamType, AppNode } from "@/types/task"
-import { Input } from "@/components/ui/input"
+import { TaskParam, TaskParamType } from "@/types/task"
+import { AppNode } from "@/types/appNode"
 import StringParam from "@/app/workflow/_components/nodes//param/StringParam"
 import { updateNodeData, useReactFlow } from "@xyflow/react"
 import { useCallback } from "react"
@@ -11,14 +11,17 @@ export const NodeParamField = ({param, nodeId} : {param: TaskParam, nodeId: stri
   const node = getNode(nodeId) as AppNode
   const value = node?.data.inputs?.[param.name]
 
-  const updateNodeParamValue = useCallback((newValue: string) => {
-    updateNodeData(
-      nodeId, {
-        ...node?.data.inputs,
-        [param.name]: newValue,
-      }
-    )
-  }, [nodeId, updateNodeData, param.name, node?.data.inputs])
+  const updateNodeParamValue = useCallback(
+    (newValue: string) =>{
+      updateNodeData(nodeId, {
+        inputs: {
+          ...node?.data.inputs,
+          [param.name]: newValue,
+        },
+      })
+    },
+    [nodeId, updateNodeData, param.name, node?.data.inputs]
+  )
 
   switch (param.type) {
     case TaskParamType.STRING:
