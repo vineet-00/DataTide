@@ -3,7 +3,7 @@ import { TaskParam, TaskParamType } from "@/types/task"
 import { AppNode } from "@/types/appNode"
 import StringParam from "@/app/workflow/_components/nodes/param/StringParam"
 import BrowserInstanceParam from "@/app/workflow/_components/nodes/param/BrowserInstanceParam"
-import { updateNodeData, useReactFlow } from "@xyflow/react"
+import { useReactFlow } from "@xyflow/react"
 import { useCallback } from "react"
 
 export const NodeParamField = ({param, nodeId, disabled} : {param: TaskParam, nodeId: string, disabled: boolean}) => {
