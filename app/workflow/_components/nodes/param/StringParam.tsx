@@ -12,7 +12,7 @@ export const StringParam = ({param, value, updateNodeParamValue, disabled}: Para
   const id= useId()
 
   useEffect(() => {
-    setInternalValue(value)
+    setInternalValue(value ?? "")
   }, [value])
 
   let Component: any = Input;
