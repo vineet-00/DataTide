@@ -1,12 +1,13 @@
 "use client"
 
-import React, {useState} from "react"
+import {useState} from "react"
 import { HomeIcon, Layers2Icon, ShieldCheckIcon, CoinsIcon, MenuIcon } from "lucide-react"
 import Logo from "@/components/Logo"
 import Link from "next/link"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
+import UserAvailableCreditsBadge from "@/components/UserAvailableCreditsBadge"
 
 
 const routes = [
@@ -43,7 +44,9 @@ export const DesktopSidebar = () => {
           <Logo />
         </div>
 
-        <div className="p-2">TODO CREDITS</div>
+        <div className="p-2">
+          <UserAvailableCreditsBadge />
+        </div>
 
         <div className="flex flex-col p-2">
           {routes.map((route) => (
