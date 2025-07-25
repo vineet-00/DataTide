@@ -16,6 +16,7 @@ import { DatesToDurationString } from "@/lib/helper/dates"
 import { GetPhasesTotalCost } from "@/lib/helper/phases"
 import { GetWorkflowPhaseDetails } from "@/actions/workflows/getWorkflowPhaseDetails"
 import PhaseStatusBadge from "@/app/workflow/runs/[workflowId]/[executionId]/_components/PhaseStatusBadge"
+import ReactCountUpWrapper from "@/components/ReactCountUpWrapper"
 
 import { 
   Card, 
@@ -104,7 +105,7 @@ export const ExecutionViewer = ({initialData}: {initialData: ExecutionData}) => 
           <ExecutionLabel 
             icon={CoinsIcon} 
             label="Credits consumed" 
-            value={creditsConsumed} 
+            value={<ReactCountUpWrapper value={creditsConsumed} />} 
           />
 
         </div>
@@ -166,7 +167,7 @@ export const ExecutionViewer = ({initialData}: {initialData: ExecutionData}) => 
                   <CoinsIcon size={18} className="stroke-muted-foreground" />
                   <span>Credits</span>
                 </div>
-                <span>TODO</span>
+                <span>{phaseDetails.data.creditsConsumed}</span>
               </Badge>
               <Badge variant={"outline"} className="space-x-4">
                 <div className="flex gap-1 items-center"> 
