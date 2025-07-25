@@ -78,6 +78,7 @@ export const MobileSidebar = () => {
           </SheetTrigger>
           <SheetContent side="left" className="w-[400px] sm:w-[540px] space-y-4">
             <Logo />
+            <UserAvailableCreditsBadge />
             <div className="flex flex-col gap-1">
               {routes.map((route) => (
                 <Link
