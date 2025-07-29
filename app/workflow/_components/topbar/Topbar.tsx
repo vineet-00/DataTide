@@ -6,16 +6,19 @@ import { ChevronLeftIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import SaveBtn from "@/app/workflow/_components/topbar/SaveBtn"
 import ExecuteBtn from "@/app/workflow/_components/topbar/ExecuteBtn"
-
+import PublishBtn from "@/app/workflow/_components/topbar/PublishBtn"
+import UnPublishBtn from "@/app/workflow/_components/topbar/UnPublishBtn"
+import NavigationTabs from "@/app/workflow/_components/topbar/NavigationTabs"
 
 interface Props{
   title: string;
   subtitle?: string;
   workflowId: string;
   hideButtons?: boolean;
+  isPublished?: boolean
 }
 
-export const Topbar = ({title, subtitle, workflowId, hideButtons=false} : Props) => {
+export const Topbar = ({title, subtitle, workflowId, hideButtons=false, isPublished=false,} : Props) => {
   
   const router = useRouter()
   return (
@@ -37,11 +40,18 @@ export const Topbar = ({title, subtitle, workflowId, hideButtons=false} : Props)
           }
         </div>
       </div>
+      <NavigationTabs workflowId={workflowId}/>
       <div className="flex gap-1 flex-1 justify-end">
         {hideButtons === false && (
           <>
           <ExecuteBtn workflowId={workflowId} />
-          <SaveBtn workflowId={workflowId} />
+          {isPublished && <UnPublishBtn workflowId={workflowId} />}
+          {!isPublished && (  
+            <>
+              <SaveBtn workflowId={workflowId} />
+              <PublishBtn workflowId={workflowId}/>
+            </>
+          )}
         </>
         )}
       </div>

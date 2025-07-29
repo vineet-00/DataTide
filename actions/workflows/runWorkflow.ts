@@ -6,6 +6,7 @@ import { FlowToExecutionPlan } from "@/lib/workflow/executionPlan"
 import { TaskRegistry } from "@/lib/workflow/task/registry"
 import { redirect } from "next/navigation"
 import { ExecuteWorkflow } from "@/lib/workflow/executeWorkflow"
+import { WorkflowStatus } from "@/types/workflow"
 
 export async function RunWorkflow (form: {
   workflowId: string;
@@ -23,41 +24,47 @@ export async function RunWorkflow (form: {
 
   const workflow = await prisma.workflow.findUnique({
     where: {
-      userId,
       id: workflowId,
     },
   })
 
-  if (!workflow) {
+  if (!workflow || workflow.userId !== userId) {
     throw new Error("workflow not found")
   };
 
   let executionPlan : WorkflowExecutionPlan
+  let workflowDefinition = flowDefinition
+  if (workflow.status === WorkflowStatus.PUBLISHED) {
+    if (!workflow.executionPlan) {
+      throw new Error("no execution plan found in published workflow")
+    };
+    executionPlan = JSON.parse(workflow.executionPlan)
+    workflowDefinition = workflow.definition
+  }else {
+    if(!flowDefinition){
+      throw new Error("flow definition is not defined")
+    }
 
-  if(!flowDefinition){
-    throw new Error("flow definition is not defined")
+    const flow = JSON.parse(flowDefinition)
+    const result = FlowToExecutionPlan(flow.nodes, flow.edges)
+    if (result.error) {
+      throw new Error("flow definition is not valid")
+    };
+
+    if (!result.executionPlan) {
+      throw new Error("no execution plan generated")
+    };
+    executionPlan = result.executionPlan
   }
-
-  const flow = JSON.parse(flowDefinition)
-  const result = FlowToExecutionPlan(flow.nodes, flow.edges)
-  if (result.error) {
-    throw new Error("flow definition is not valid")
-  };
-
-  if (!result.executionPlan) {
-    throw new Error("no execution plan generated")
-  };
-
-  executionPlan = result.executionPlan
   
-  const execution = await prisma.WorkflowExecution.create({
+  const execution = await prisma.workflowExecution.create({
     data: {
       workflowId,
       userId,
       status: WorkflowExecutionStatus.PENDING,
       startedAt: new Date(),
       trigger: WorkflowExecutionTrigger.MANUAL,
-      definition: flowDefinition,
+      definition: workflowDefinition,
       phases: {
         create: executionPlan.flatMap((phase) => {
           return phase.nodes.flatMap((node) => {
