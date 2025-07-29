@@ -43,16 +43,19 @@ import {
        <AlertDialogContent>
          <AlertDialogHeader>
            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-           <AlertDialogDescription>
-            If you delete this workflow, you will not be able to recove it.
-            <div className="flex flex-col py-4 gap-2">
-              <p>If you are sure, enter <b>{workflowName}</b> to confirm:</p>
-              <Input 
-                value={confirmText}
-                onChange={(e) => setConfirmText(e.target.value)}
-              /> 
+           <AlertDialogDescription asChild>
+            <div>
+              <p>If you delete this workflow, you will not be able to recover it.</p>
+              <div className="flex flex-col py-4 gap-2">
+                <p>If you are sure, enter <b>{workflowName}</b> to confirm:</p>
+                <Input 
+                  value={confirmText}
+                  onChange={(e) => setConfirmText(e.target.value)}
+                /> 
+              </div>
             </div>
            </AlertDialogDescription>
+
          </AlertDialogHeader>
          <AlertDialogFooter>
            <AlertDialogCancel onClick={() => setConfirmText("")}>Cancel</AlertDialogCancel>
