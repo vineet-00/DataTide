@@ -174,7 +174,10 @@ async function finalizePhase (phaseId: string, success: boolean, outputs: any, l
 
 async function executePhase (phase: ExecutionPhase, node: AppNode, environment: Environment, logCollector: LogCollector): Promise<boolean>{
   const runFn = ExecutorRegistry[node.data.type]
-  if (!runFn) return false;
+  if (!runFn) {
+    logCollector.error(`not found executor for ${node.data.type}`)
+    return false;
+  }
 
   // await waitFor(3000)
   const executionEnvironment: ExecutionEnvironment<any> = createExecutionEnvironment(node, environment, logCollector)
