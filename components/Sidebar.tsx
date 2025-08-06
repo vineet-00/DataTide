@@ -50,7 +50,7 @@ export const DesktopSidebar = () => {
 
         <div className="flex flex-col p-2">
           {routes.map((route) => (
-              <Link key={route.href} href={route.href} className={buttonVariants({
+              <Link key={route.href} href={`/${route.href}`} className={buttonVariants({
                 variant: activeRoute.href === route.href ? "sidebarActiveItem" : "sidebarItem"
               })}>
                 <route.icon size={20} />
@@ -83,7 +83,7 @@ export const MobileSidebar = () => {
               {routes.map((route) => (
                 <Link
                   key={route.href}
-                  href={route.href}
+                  href={`/${route.href}`}
                   className={buttonVariants({
                     variant: activeRoute.href === route.href
                       ? "sidebarActiveItem"

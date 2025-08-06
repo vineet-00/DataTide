@@ -2,6 +2,7 @@
 import { TaskParam, TaskParamType } from "@/types/task"
 import { AppNode } from "@/types/appNode"
 import StringParam from "@/app/workflow/_components/nodes/param/StringParam"
+import CredentialsParam from "@/app/workflow/_components/nodes/param/CredentialsParam"
 import SelectParam from "@/app/workflow/_components/nodes/param/SelectParam"
 import BrowserInstanceParam from "@/app/workflow/_components/nodes/param/BrowserInstanceParam"
 import { useReactFlow } from "@xyflow/react"
@@ -32,6 +33,8 @@ export const NodeParamField = ({param, nodeId, disabled} : {param: TaskParam, no
       return (<BrowserInstanceParam param={param} value={""} updateNodeParamValue={updateNodeParamValue} />);
     case TaskParamType.SELECT:
       return (<SelectParam param={param} value={value} updateNodeParamValue={updateNodeParamValue} disabled={disabled} />)
+    case TaskParamType.CREDENTIAL:
+      return (<CredentialsParam param={param} value={value} updateNodeParamValue={updateNodeParamValue} disabled={disabled} />)
     default:
       return(
         <div className="w-full">
