@@ -3,13 +3,14 @@
 DataTide is a highly customizable web scraper built with modern web technologies. It enables users to create, manage, and execute complex web scraping workflows through a visual, no-code/low-code interface powered by React Flow. With advanced features like AI-based data extraction via Together AI and secure billing integration with Stripe, DataTide is designed for developers, businesses, and data enthusiasts seeking efficient and scalable web scraping solutions.
 
 ## Screenshots
-![Screenshot of homepage](public\assets\homepage.png)
-![Screenshot of workflow](public\assets\workflows.png)
-![Screenshot of workflow-editor](public\assets\workflow-editor.png)
-![Screenshot of workflow-runs](public\assets\workflow-runs.png)
-![Screenshot of credentials](public\assets\credentials.png)
-![Screenshot of billing](public\assets\billing.png)
-![Screenshot of transaction-history](public\assets\transaction-history.png)
+![Screenshot of homepage](assets/homepage.png)
+![Screenshot of workflow](assets/workflows.png)
+![Screenshot of workflow-editor](assets/workflow-editor.png)
+![Screenshot of workflow-runs](assets/workflow-runs.png)
+![Screenshot of credentials](assets/credentials.png)
+![Screenshot of billing](assets/billing.png)
+![Screenshot of transaction-history](assets/transaction-history.png)
+
 
 ## Features
 
