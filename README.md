@@ -1,36 +1,136 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DataTide
+
+DataTide is a highly customizable web scraper built with modern web technologies. It enables users to create, manage, and execute complex web scraping workflows through a visual, no-code/low-code interface powered by React Flow. With advanced features like AI-based data extraction via Together AI and secure billing integration with Stripe, DataTide is designed for developers, businesses, and data enthusiasts seeking efficient and scalable web scraping solutions.
+
+## Screenshots
+![Screenshot of homepage](assets/homepage.png)
+![Screenshot of workflow](assets/workflows.png)
+![Screenshot of workflow-editor](assets/workflow-editor.png)
+![Screenshot of workflow-runs](assets/workflow-runs.png)
+![Screenshot of credentials](assets/credentials.png)
+![Screenshot of billing](assets/billing.png)
+![Screenshot of transaction-history](assets/transaction-history.png)
+
+## Features
+
+- **Launch Browser:** Initiates a browser instance to begin the web scraping process, enabling interaction with web pages.
+- **Page to HTML:** Extracts the complete HTML content of the current page for detailed analysis and processing.
+- **Extract Text from Element:** Retrieves text content from a specified HTML element using a CSS selector.
+- **Fill Input:** Automatically fills a specified input field with a desired value, emulating user input.
+- **Click Element:** Simulates a click action on a specified HTML element, triggering events or navigation.
+- **Scroll to Element:** Scrolls to a specified element, emulating user behavior for dynamic content loading.
+- **Wait for Element:** Pauses the workflow until a specified element becomes visible or hidden.
+- **Extract Data via AI:** Leverages Together AI to parse HTML content and extract structured data based on custom prompts, returning JSON output.
+- **Read JSON:** Retrieves a specific key or property from a JSON object for use in workflows.
+- **Build JSON:** Adds or updates data within an existing JSON object or creates a new one with specified properties.
+- **Deliver via Webhook:** Sends scraped data to an external API endpoint through a POST request for further processing or storage.
+- **Navigate to URL:** Navigates to a specified URL, loading the desired web page for scraping or interaction.
+- **Billing Integration:** Securely manage subscriptions and payments through a Stripe-powered billing page.
+
+## Technologies Used
+
+-  **Next.js:** Framework for server-side rendering, server actions, and building the frontend and backend.
+- **React:** JavaScript library for building the user interface.
+- **React Flow:** Visual workflow builder for creating and managing scraping workflows.
+- **PostgreSQL with Neon DB:** Scalable database for storing scraping configurations and data.
+- **Prisma:** ORM for seamless database interactions.
+- **Puppeteer:** Headless browser automation for web scraping tasks.
+- **Together AI:** AI-powered data extraction for intelligent parsing of web content.
+- **Stripe:** Secure payment processing for subscription-based billing.
+- **Lucide React:** Icon library for a modern, aesthetic UI (e.g., Globe2 in the logo).
+- **Tailwind CSS:** Utility-first CSS framework for a sleek, customizable design with a teal and blue-gray theme.
+- **TypeScript:** Static typing for type-safe code.
+- **Node.js:** JavaScript runtime for server-side logic (v18+).
+- **ESLint:** Code linting for maintaining code quality.
+- **Axios:** HTTP client for API requests to Together AI and webhooks.
 
 ## Getting Started
+### Prerequisites
 
-First, run the development server:
+- Node.js (v18 or higher)
+- PostgreSQL (via Neon DB or local instance)
+- Stripe account and API keys
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Installation
+
+1. **Clone the Repository:**
+```
+git clone https://github.com/vineet-00/DataTide.git
+cd dataTide
 ```
 
+2. **Install Dependencies:**
+```
+npm install
+# or
+yarn install
+
+# or
+pnpm install
+
+# or
+bun install
+```
+
+
+3. **Set Up Environment Variables:** Create a `.env.local` file in the root directory and add the following:
+```
+DATABASE_URL="postgresql://user:password@neon-db-host:5432/flowscrape?schema=public"
+TOGETHER_AI_API_KEY="your-together-ai-api-key"
+STRIPE_SECRET_KEY="sk_test_your-stripe-secret-key"
+STRIPE_PUBLISHABLE_KEY="pk_test_your-stripe-publishable-key"
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+```
+
+
+4. **Set Up Prisma:Initialize the database schema:**
+```
+npx prisma migrate dev --name init
+```
+
+5. **Run the Development Server:**
+```
+npm run dev
+
+# or
+yarn dev
+
+# or
+pnpm dev
+``` 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+6. **Configure Stripe:**
 
-## Learn More
+- Set up a Stripe account at Stripe Dashboard.
+- Add your Stripe secret and publishable keys to .env.local.
+- Test the billing page (/billing) to ensure payment flows work.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. Create a Workflow:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Use the React Flow interface to design a scraping workflow by dragging and dropping nodes (e.g., Launch Browser, Navigate to URL, Extract Data via AI).
+- Configure each node with specific parameters (e.g., CSS selectors, URLs, AI prompts).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+2. Execute Scraping:
+
+- Run the workflow to scrape data from target websites.
+- Use Puppeteer nodes (e.g., Click Element, Scroll to Element) for dynamic interactions.
+- Leverage Together AI for intelligent data extraction, converting HTML to structured JSON.
+
+
+3. Manage Billing:
+
+- Access the /billing page to subscribe to premium features via Stripe.
+- Monitor subscription status and payment history.
+
+
+4. Export Data:
+
+- Use the Deliver via Webhook node to send scraped data to external APIs.
+- Store results in PostgreSQL via Prisma or download as JSON.
