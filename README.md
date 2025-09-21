@@ -3,13 +3,13 @@
 DataTide is a highly customizable web scraper built with modern web technologies. It enables users to create, manage, and execute complex web scraping workflows through a visual, no-code/low-code interface powered by React Flow. With advanced features like AI-based data extraction via Together AI and secure billing integration with Stripe, DataTide is designed for developers, businesses, and data enthusiasts seeking efficient and scalable web scraping solutions.
 
 ## Screenshots
-![Screenshot of homepage](assets/homepage.png)
-![Screenshot of workflow](assets/workflows.png)
-![Screenshot of workflow-editor](assets/workflow-editor.png)
-![Screenshot of workflow-runs](assets/workflow-runs.png)
-![Screenshot of credentials](assets/credentials.png)
-![Screenshot of billing](assets/billing.png)
-![Screenshot of transaction-history](assets/transaction-history.png)
+![Screenshot of homepage](public\assets\homepage.png)
+![Screenshot of workflow](public\assets\workflows.png)
+![Screenshot of workflow-editor](public\assets\workflow-editor.png)
+![Screenshot of workflow-runs](public\assets\workflow-runs.png)
+![Screenshot of credentials](public\assets\credentials.png)
+![Screenshot of billing](public\assets\billing.png)
+![Screenshot of transaction-history](public\assets\transaction-history.png)
 
 ## Features
 
@@ -75,11 +75,24 @@ bun install
 
 3. **Set Up Environment Variables:** Create a `.env.local` file in the root directory and add the following:
 ```
-DATABASE_URL="postgresql://user:password@neon-db-host:5432/flowscrape?schema=public"
-TOGETHER_AI_API_KEY="your-together-ai-api-key"
-STRIPE_SECRET_KEY="sk_test_your-stripe-secret-key"
-STRIPE_PUBLISHABLE_KEY="pk_test_your-stripe-publishable-key"
-NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/setup
+
+NEXT_PUBLIC_DEV_MODE=false
+
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+API_SECRET=cookies_secret
+
+STRIPE_SECRET_KEY=
+
+STRIPE_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+
+ENCRYPTION_KEY=
 ```
 
 
