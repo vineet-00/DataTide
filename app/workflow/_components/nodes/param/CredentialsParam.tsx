@@ -12,7 +12,7 @@ import {
 import { useId } from "react"
 import { Label } from "@/components/ui/label"
 import { useQuery } from "@tanstack/react-query"
-import { GetCredentialsForUser } from "@/actions/Credentials/getCredentialsForUser"
+import { GetCredentialsForUser } from "@/actions/credentials/getCredentialsForUser"
 
 export const CredentialsParam = ({param, updateNodeParamValue, value} : ParamProps) => {
   
